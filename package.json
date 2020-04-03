@@ -1,0 +1,21 @@
+{
+  "name": "weather-app-v2",
+  "version": "1.0.0",
+  "description": "Full-stack weather application with openweathermap api and react front end and node.js/express backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Kota Cody Enokida",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
