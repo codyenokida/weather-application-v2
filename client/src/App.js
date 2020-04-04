@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import CurrentForecast from "./components/CurrentForecast/CurrentForecast"
+import WeekForecast from "./components/WeekForecast/WeekForecast"
+import Highlight from "./components/Highlight/Highlight"
+import './index.css'
+
+class IndexPage extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+
+    }
+  }
+
+  render() {
+    return (
+      <div className="layout">
+        <CurrentForecast className="currentForecast"/>
+        <div className="weekForecast">
+          <h2 className="title" id="weekForecastTitle">This Week</h2>
+          <WeekForecast idName="dayOne"/>
+          <WeekForecast idName="dayTwo"/>
+          <WeekForecast idName="dayThree"/>
+          <WeekForecast idName="dayFour"/>
+          <WeekForecast idName="dayFive"/>
+          <WeekForecast idName="daySix"/>
+          <WeekForecast idName="daySeven"/>
+        </div>
+        <div className="forecastHighlight">
+          <h2 className="title" id="forecastHighlightTitle">Today's Highlights</h2>
+          <Highlight idName="windStatus"/>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default IndexPage;
