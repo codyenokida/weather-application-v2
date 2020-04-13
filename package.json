@@ -12,6 +12,7 @@
   "author": "Kota Cody Enokida",
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^4.9.9",
     "concurrently": "^5.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

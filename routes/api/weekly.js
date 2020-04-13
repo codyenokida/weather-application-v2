@@ -10,7 +10,7 @@ const fetch = require('node-fetch');
 router.get('/', (req, res) => {
     const api_key = process.env.API_KEY;
     const zipcode = req.query.zipcode
-    fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=${api_key}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode}&appid=${api_key}`)
     .then(res => res.json())
     .then(data => {
         res.send(data)

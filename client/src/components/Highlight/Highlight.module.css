@@ -1,6 +1,6 @@
 .highlightContainer {
-    width: 85%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
     background-color: #FFFFFF;
     border-radius: 15px;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);    
@@ -9,4 +9,19 @@
 #windStatus {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
+}
+
+#pressure {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
+#visibility {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+}
+
+#humidity {
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
 }

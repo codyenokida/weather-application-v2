@@ -11,7 +11,9 @@ class WeekForecast extends React.Component {
 
         return(
             <div className={styles.weekForecastContainer} id={styles[this.props.idName]}>
-                
+                <h2>Tue</h2>
+                {this.props.icon}
+                <p>100</p>
             </div>
         )
     }

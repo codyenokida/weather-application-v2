@@ -4,6 +4,26 @@
     background-color: #FFFFFF;
     border-radius: 15px;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 150px 50px;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+}
+
+.weekForecastContainer h2 {
+    grid-row: 1 / 2;
+    margin: 0 0 0 0;
+}
+
+.weekForecastContainer img {
+    grid-row: 2 / 3;
+    width: 50%;
+}
+
+.weekForecastContainer p {
+    grid-row: 3 / 4;
 }
 
 #dayOne {
