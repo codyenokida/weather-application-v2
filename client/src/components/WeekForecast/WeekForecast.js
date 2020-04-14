@@ -11,9 +11,9 @@ class WeekForecast extends React.Component {
 
         return(
             <div className={styles.weekForecastContainer} id={styles[this.props.idName]}>
-                <h2>Tue</h2>
+                <h2>{this.props.date}</h2>
                 {this.props.icon}
-                <p>100</p>
+                <p>{Math.round((this.props.high - 273.15) * 9/5 + 32) + "°F"} <span>{Math.round((this.props.low - 273.15) * 9/5 + 32) + "°F"}</span></p>
             </div>
         )
     }

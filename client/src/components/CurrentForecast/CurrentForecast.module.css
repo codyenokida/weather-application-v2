@@ -1,10 +1,10 @@
 /* Grid Layout for Current Forecase Container */
 .currentForecastContainer {
     background-color: #FFFFFF;
-    height: auto;
+    height: 100vh;
     width: 100vw;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
-
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 10% 45% 45%;
@@ -22,7 +22,7 @@
 }
 
 .iconContainer img {
-    width: 100%;
+    width: 80%;
 }
 
 /* Container for Current Details */
@@ -47,6 +47,7 @@
 .currentDetails p {
     font-size: 1rem;
     font-weight: 300;
+    margin: 20px 0 10px 0;
 }
 
 .currentDetails span {
@@ -66,15 +67,13 @@
     margin-right: 10px;
 }
 
-/* Small devices */
-@media (min-width: 480px) { 
-}
-
 /* Medium devices */
 @media (min-width: 768px) { 
     .currentForecastContainer {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 15% 85%;
+        height: 70vh;
+        width: 100vw;
     }
 
     .iconContainer {
@@ -89,43 +88,58 @@
     }
 
     .currentDetails h1 {
-        font-size: 7rem;
+        font-size: 10vw;
     }
 
     .currentDetails h2 {
-        font-size: 2rem;
+        font-size: 3vw;
     }
 
     .currentDetails p,
     .currentDetails span {
-        font-size: 1rem;
+        font-size: 1.5vw;
+    }
+
+    .currentCondition img {
+        width: 20px;
     }
 }
+
+/* Small devices */
+@media (min-width: 768px) and (orientation: landscape) { 
+    .currentForecastContainer {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 15% 85%;
+        height: 100vh;
+        width: 100vw;   
+    }
+}
+
 
 /* Large devices  */
 @media (min-width: 992px) { 
     .currentDetails h1 {
-        font-size: 10rem;
+        font-size: 12vw;
     }
 
     .currentDetails h2 {
-        font-size: 4rem;
+        font-size: 4vw;
     }
 
     .currentDetails p,
     .currentDetails span {
-        font-size: 2rem;
+        font-size: 2vw;
     }
 }
 
 /* Larger devices  */
 @media (min-width: 1200px) { 
     .currentForecastContainer {
-        height: auto;
+        height: 100vh;
         width: 25vw;
-        grid-row: 1 / 5;
         grid-template-columns: 1fr;
         grid-template-rows: 10% 45% 45%;
+        position: fixed;
     }
 
     .iconContainer {
@@ -140,19 +154,19 @@
     }
 
     .currentDetails h1 {
-        font-size: 6rem;
+        font-size: 7vw;
     }
     
     .currentDetails h2 {
-        font-size: 2rem;
+        font-size: 2vw;
     }
     
     .currentDetails p {
-        font-size: 1rem;
+        font-size: 1.5vw;
     }
     
     .currentDetails span {
-        font-size: 1rem;
+        font-size: 1.5vw;
     }
 
     .currentCondition img {

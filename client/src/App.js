@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CurrentForecast from "./components/CurrentForecast/CurrentForecast"
+import HighlightLayout from "./components/HighlightLayout/HighlightLayout"
 import WeekForecast from "./components/WeekForecast/WeekForecast"
 import Highlight from "./components/Highlight/Highlight"
 import SunHighlight from "./components/SunHighlight/SunHighlight"
@@ -17,45 +18,32 @@ import oneN from "./images/01n.svg"
 import twoN from "./images/02n.svg"
 
 import './index.css'
-import fetch from 'node-fetch';
-
-var d = new Date();
-var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-var iconList = {
-  "01d": <img src={oneD} alt="Clear Sky"/>,
-  "02d": <img src={twoD} alt="Few Clouds"/>,
-  "03d": <img src={threeD} alt="Scattered Clouds"/>,
-  "04d": <img src={fourD} alt="Broken Clouds"/>,
-  "09d": <img src={nineD} alt="Shower Rain"/>,
-  "10d": <img src={tenD} alt="Rain"/>,
-  "11d": <img src={elevenD} alt="Thunderstorm"/>,
-  "13d": <img src={thirteenD} alt="Snow"/>,
-  "50d": <img src={fiftyD} alt="Mist"/>,
-  "01n": <img src={oneN} alt="Clear Sky"/>,
-  "02n": <img src={twoN} alt="Few Clouds"/>,
-  "03n": <img src={threeD} alt="Scattered Clouds"/>,
-  "04n": <img src={fourD} alt="Broken Clouds"/>,
-  "09n": <img src={nineD} alt="Shower Rain"/>,
-  "10n": <img src={tenD} alt="Rain"/>,
-  "11n": <img src={elevenD} alt="Thunderstorm"/>,
-  "13n": <img src={thirteenD} alt="Snow"/>,
-  "50n": <img src={fiftyD} alt="Mist"/>,
-}
 
 class IndexPage extends React.Component {
   constructor() {
     super()
-    this.getWeatherInfo = this.getWeatherInfo.bind(this)
     this.state = {
       zipcode: 92606,
       data: null,
       weeklyData: null
     }
+    this.getWeatherInfo = this.getWeatherInfo.bind(this)
+    this.setZipcode = this.setZipcode.bind(this)
   }
   
   componentDidMount() {
     this.getWeatherInfo();
+  }
+
+  setZipcode(zipcode) {
+    var zipCodePattern = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+    if (zipCodePattern.test(zipcode)) {
+      this.setState({
+        zipcode: zipcode
+      },
+      () => this.getWeatherInfo()
+      )
+    }
   }
 
   getWeatherInfo() {
@@ -64,9 +52,9 @@ class IndexPage extends React.Component {
         return response.json();
     })
     .then((data) => {
-      this.setState({
-        data: data
-      })
+        this.setState({
+          data: data
+        })
       console.log(data)
     });
 
@@ -84,27 +72,79 @@ class IndexPage extends React.Component {
 
   render() {
 
+    var d = new Date();
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    var dayDict = {
+      0: 'Sun',
+      1: 'Mon',
+      2: 'Tue',
+      3: 'Wed',
+      4: 'Thu',
+      5: 'Fri',
+      6: 'Sat',
+    }
+
+    var iconList = {
+      "01d": <img src={oneD} alt="Clear Sky"/>,
+      "02d": <img src={twoD} alt="Few Clouds"/>,
+      "03d": <img src={threeD} alt="Scattered Clouds"/>,
+      "04d": <img src={fourD} alt="Broken Clouds"/>,
+      "09d": <img src={nineD} alt="Shower Rain"/>,
+      "10d": <img src={tenD} alt="Rain"/>,
+      "11d": <img src={elevenD} alt="Thunderstorm"/>,
+      "13d": <img src={thirteenD} alt="Snow"/>,
+      "50d": <img src={fiftyD} alt="Mist"/>,
+      "01n": <img src={oneN} alt="Clear Sky"/>,
+      "02n": <img src={twoN} alt="Few Clouds"/>,
+      "03n": <img src={threeD} alt="Scattered Clouds"/>,
+      "04n": <img src={fourD} alt="Broken Clouds"/>,
+      "09n": <img src={nineD} alt="Shower Rain"/>,
+      "10n": <img src={tenD} alt="Rain"/>,
+      "11n": <img src={elevenD} alt="Thunderstorm"/>,
+      "13n": <img src={thirteenD} alt="Snow"/>,
+      "50n": <img src={fiftyD} alt="Mist"/>,
+    }
+        
     return (
       this.state.data && this.state.weeklyData ? 
       <div className="layout">
-        <CurrentForecast className="currentForecast" data={this.state.data} d={d} days={days} iconList={iconList}/>
-        
-        <div className="weekForecast">
-          <h2 className="title" id="weekForecastTitle">This Week</h2>
-          <WeekForecast idName="dayOne" icon={iconList[this.state.weeklyData.list[3].weather[0].icon]}/>
-          <WeekForecast idName="dayTwo" icon={iconList[this.state.weeklyData.list[11].weather[0].icon]}/>
-          <WeekForecast idName="dayThree" icon={iconList[this.state.weeklyData.list[19].weather[0].icon]}/>
-          <WeekForecast idName="dayFour" icon={iconList[this.state.weeklyData.list[27].weather[0].icon]}/>
-          <WeekForecast idName="dayFive" icon={iconList[this.state.weeklyData.list[35].weather[0].icon]}/>
-        </div>
-        <div className="forecastHighlight">
-          <h2 className="title" id="forecastHighlightTitle">Today's Highlights</h2>
-          <Highlight idName="windStatus"/>
-          <Highlight idName="pressure"/>
-          <Highlight idName="visibility"/>
-          <Highlight idName="humidity"/>
-          <SunHighlight />
-        </div>
+        <CurrentForecast className="currentForecast" data={this.state.data} d={d} days={days} iconList={iconList} setZipcode={this.setZipcode}/>
+
+        <HighlightLayout title="This Week">
+          <div className="forecastContainer">
+            <WeekForecast 
+              date={dayDict[d.getDay() + 1 < 7 ? d.getDay() + 1 : d.getDay() - 6]} 
+              icon={iconList[this.state.weeklyData.list[6].weather[0].icon]}
+              high={this.state.weeklyData.list[6].main.temp_max}
+              low={this.state.weeklyData.list[6].main.temp_min}/>
+            <WeekForecast 
+              date={dayDict[d.getDay() + 2 < 7 ? d.getDay() + 2 : d.getDay() - 5]} 
+              icon={iconList[this.state.weeklyData.list[14].weather[0].icon]}
+              high={this.state.weeklyData.list[14].main.temp_max}
+              low={this.state.weeklyData.list[14].main.temp_min}/>
+            <WeekForecast 
+              date={dayDict[d.getDay() + 3 < 7 ? d.getDay() + 3 : d.getDay() - 4]} 
+              icon={iconList[this.state.weeklyData.list[22].weather[0].icon]}
+              high={this.state.weeklyData.list[22].main.temp_max}
+              low={this.state.weeklyData.list[22].main.temp_min}/>
+            <WeekForecast 
+              date={dayDict[d.getDay() + 4 < 7 ? d.getDay() + 4 : d.getDay() - 3]} 
+              icon={iconList[this.state.weeklyData.list[30].weather[0].icon]}
+              high={this.state.weeklyData.list[30].main.temp_max}
+              low={this.state.weeklyData.list[30].main.temp_min}/>
+            <WeekForecast 
+              date={dayDict[d.getDay() + 5 < 7 ? d.getDay() + 5 : d.getDay() - 2]} 
+              icon={iconList[this.state.weeklyData.list[38].weather[0].icon]}
+              high={this.state.weeklyData.list[38].main.temp_max}
+              low={this.state.weeklyData.list[38].main.temp_min}/>
+          </div>
+        </HighlightLayout>
+
+        <HighlightLayout title="Today's Highlights">
+
+        </HighlightLayout>
+      
       </div>
       : null
     );
