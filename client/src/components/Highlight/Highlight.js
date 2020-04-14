@@ -12,8 +12,12 @@ class Highlight extends React.Component {
 
     render() {
         return(
-            <div className={styles.highlightContainer} id={styles[this.props.idName]}>
-
+            <div className={styles.highlightContainer}>
+                <h2>{this.props.title}</h2>
+                <p>{this.props.stat}<span>{this.props.unit}</span></p>
+                <div className={styles.description}>
+                    {this.props.children}
+                </div>
             </div>
         )
     }

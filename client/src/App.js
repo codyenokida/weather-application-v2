@@ -16,8 +16,30 @@ import thirteenD from "./images/13d.svg"
 import fiftyD from "./images/50d.svg"
 import oneN from "./images/01n.svg"
 import twoN from "./images/02n.svg"
+import compass from "./images/compass.svg"
+
+import { Slider } from "@material-ui/core"
 
 import './index.css'
+
+function getAngle(degree) {
+  if (degree < 30 || degree >= 330)
+    return <h3>N</h3>
+  else if (30 < degree && degree <= 60) 
+    return <h3>NE</h3>
+  else if (60 < degree && degree <= 120) 
+    return <h3>E</h3>
+  else if (120 < degree && degree <= 150) 
+    return <h3>SE</h3>
+  else if (150 < degree && degree <= 210) 
+    return <h3>S</h3>
+  else if (210 < degree && degree <= 240) 
+    return <h3>SW</h3>
+  else if (240 < degree && degree <= 300) 
+    return <h3>W</h3>
+  return <h3>NW</h3>
+
+}
 
 class IndexPage extends React.Component {
   constructor() {
@@ -112,7 +134,7 @@ class IndexPage extends React.Component {
         <CurrentForecast className="currentForecast" data={this.state.data} d={d} days={days} iconList={iconList} setZipcode={this.setZipcode}/>
 
         <HighlightLayout title="This Week">
-          <div className="forecastContainer">
+          <div className="boxContainer">
             <WeekForecast 
               date={dayDict[d.getDay() + 1 < 7 ? d.getDay() + 1 : d.getDay() - 6]} 
               icon={iconList[this.state.weeklyData.list[6].weather[0].icon]}
@@ -142,7 +164,46 @@ class IndexPage extends React.Component {
         </HighlightLayout>
 
         <HighlightLayout title="Today's Highlights">
-
+          <div className="highlightBoxContainer">
+            <div className="moduleContainer">
+              <Highlight 
+                title="Wind Status" 
+                stat={this.state.data.wind.speed} 
+                unit="km/hr">
+                <div className="compassContainer">
+                  <img src={compass}/>
+                  {getAngle(this.state.data.wind.deg)}
+                </div>
+              </Highlight>
+              <Highlight 
+                title="Pressure" 
+                stat={(Math.round(this.state.data.main.pressure * 10) / 100).toFixed(2)} 
+                unit="kPa">
+                {(Math.round(this.state.data.main.pressure * 10) / 10000).toFixed(2) >= 101.325 ? <p>Average Pressure 🤙</p> : <p>Low Pressure 🤙</p>}
+              </Highlight>
+              <Highlight 
+                title="Visibility" 
+                stat={(Math.round(this.state.data.visibility) / 1000).toFixed(2)} 
+                unit="km">
+                {(Math.round(this.state.data.visibility) / 1000).toFixed(2) >= 12.6 ? <p>Good Visibility 🤙</p> : <p>Bad Visibility 🤙</p>}
+              </Highlight>
+              <Highlight 
+                title="Humidity" 
+                stat={this.state.data.main.humidity} 
+                unit="%">
+                <Slider
+                  defaultValue={this.state.data.main.humidity}
+                  step={10}
+                  min={0}
+                  max={100}
+                  value={this.state.data.main.humidity}
+                />
+              </Highlight>
+            </div>
+            <div className="sunContainer">
+              <SunHighlight title="Sunrise & Sunset"></SunHighlight>
+            </div>
+          </div>
         </HighlightLayout>
       
       </div>

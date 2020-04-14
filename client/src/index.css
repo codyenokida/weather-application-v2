@@ -22,13 +22,53 @@ code {
   margin: 0;
 }
 
-.forecastContainer { 
+.boxContainer { 
   width: 90%;
   padding: 0 5% 0 5%;
   height: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
+}
+
+.highlightBoxContainer { 
+  width: 90%;
+  padding: 0 5% 0 5%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.moduleContainer {
+  width: 98%;
+  margin: 0 1% 0 1%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+.sunContainer {
+  width: 98%;
+  margin: 0 1% 0 1%;
+}
+
+.compassContainer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+
+.compassContainer img {
+    width: 4vw;
+    margin-right: 10px;
+}
+
+.compassContainer h3 {
+  font-size: 4vw;
+  padding: 0 0 0 0;
+  font-weight: 100;
 }
 
 /* Small devices */
@@ -47,5 +87,30 @@ code {
 
 /* Larger devices  */
 @media (min-width: 1200px) { 
+
+  .moduleContainer {
+    width: 63%;
+    margin: 0 1% 0 1%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+  }
+
+  .sunContainer {
+    width: 33%;
+    margin: 0 1% 0 1%;
+  }
+
+  .compassContainer img {
+    width: 2vw;
+    margin-right: 10px;
+}
+
+.compassContainer h3 {
+  font-size: 2vw;
+  padding: 0 0 0 0;
+  font-weight: 100;
+}
 
 }

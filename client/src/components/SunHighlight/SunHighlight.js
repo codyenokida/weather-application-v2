@@ -13,7 +13,7 @@ class SunHighlight extends React.Component {
     render() {
         return(
             <div className={styles.sunHighlightContainer}>
-
+                <h2>{this.props.title}</h2>
             </div>
         )
     }

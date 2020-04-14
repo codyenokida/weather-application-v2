@@ -1,10 +1,40 @@
 .sunHighlightContainer {
-    width: 85%;
-    height: 95%;
+    width: 90%;
+    height: auto;
+    margin: 0 0 0 0;
     background-color: #FFFFFF;
     border-radius: 15px;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
 
     grid-column: 3 / 4;
     grid-row: 2 / 4;
+}
+
+.sunHighlightContainer h2 {
+    color: #8E8E8E;
+    font-size: 4vw;
+    margin: 10px 0 0 10px;
+    font-weight: 500;
+}
+
+/* Small devices */
+@media (min-width: 480px) { 
+    
+}
+
+/* Medium devices */
+@media (min-width: 768px) { 
+}
+
+/* Large devices  */
+@media (min-width: 992px) { 
+  
+}
+
+/* Larger devices  */
+@media (min-width: 1200px) { 
+    .sunHighlightContainer h2 {
+        font-size: 2vw;
+        margin: 20px 0 0 20px;
+    }
 }

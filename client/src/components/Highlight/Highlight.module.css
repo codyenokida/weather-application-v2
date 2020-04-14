@@ -1,27 +1,91 @@
 .highlightContainer {
-    width: 90%;
-    height: 90%;
+    width: 45%;
+    height: auto;
+    margin: 10px 0 10px 0;
     background-color: #FFFFFF;
     border-radius: 15px;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);    
 }
 
-#windStatus {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
+.highlightContainer h2 {
+    color: #8E8E8E;
+    font-size: 4vw;
+    margin: 15px 0 0 20px;
+    font-weight: 500;
 }
 
-#pressure {
-    grid-row: 2 / 3;
-    grid-column: 2 / 3;
+.highlightContainer p {
+    font-size: 8vw;
+    margin: 10px 0 0 20px;
 }
 
-#visibility {
-    grid-row: 3 / 4;
-    grid-column: 1 / 2;
+.highlightContainer span {
+    font-size: 3vw;
 }
 
-#humidity {
-    grid-row: 3 / 4;
-    grid-column: 2 / 3;
+.description {
+    width: 70%;
+    margin: 0 0 0 20px;
+}
+
+.description p {
+    font-size: 3vw;
+    margin: 10px 0 0 0;
+    padding: 0 0 15px 0;
+}
+
+/* Small devices */
+@media (min-width: 480px) { 
+    
+}
+
+/* Medium devices */
+@media (min-width: 768px) { 
+    .highlightContainer h2 {
+        font-size: 4vw;
+        margin: 20px 0 0 20px;
+    }
+    
+    .highlightContainer p {
+        font-size: 8vw;
+        margin: 0 0 0 20px;
+    }
+
+    .highlightContainer span {
+        font-size: 2vw;
+    }
+
+    .description p {
+        font-size: 2.5vw;
+        margin: 10px 0 0 0;
+        padding: 0 0 20px 0;
+    }
+}
+
+/* Large devices  */
+@media (min-width: 992px) { 
+  
+}
+
+/* Larger devices  */
+@media (min-width: 1200px) { 
+    .highlightContainer h2 {
+        font-size: 2vw;
+        margin: 20px 0 0 20px;
+    }
+    
+    .highlightContainer p {
+        font-size: 4vw;
+        margin: 0 0 0 20px;
+    }
+
+    .highlightContainer span {
+        font-size: 1vw;
+    }
+
+    .description p {
+        font-size: 1vw;
+        margin: 10px 0 0 0;
+        padding: 0 0 20px 0;
+    }
 }
