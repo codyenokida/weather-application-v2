@@ -17,6 +17,8 @@ import fiftyD from "./images/50d.svg"
 import oneN from "./images/01n.svg"
 import twoN from "./images/02n.svg"
 import compass from "./images/compass.svg"
+import sunRise from "./images/sunrise.svg"
+import sunSet from "./images/sunset.svg"
 
 import { Slider } from "@material-ui/core"
 
@@ -38,7 +40,27 @@ function getAngle(degree) {
   else if (240 < degree && degree <= 300) 
     return <h3>W</h3>
   return <h3>NW</h3>
+}
 
+function getTime(utc) {
+  // Create a new JavaScript Date object based on the timestamp
+  // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+  var date = new Date(utc * 1000);
+  // Hours part from the timestamp
+  var day = true
+  if (date.getHours() >= 12) 
+    day = false
+  if (!day)
+    var hours = "0" + (date.getHours() - 12)
+  else
+    var hours = "0" + (date.getHours())
+
+  // Minutes part from the timestamp
+  var minutes = "0" + date.getMinutes();
+  // Will display time in 10:30:23 format
+  if (day)
+    return hours.substr(-2) + ':' + minutes.substr(-2) + " AM";
+  return hours.substr(-2)  + ':' + minutes.substr(-2) + " PM";
 }
 
 class IndexPage extends React.Component {
@@ -201,7 +223,17 @@ class IndexPage extends React.Component {
               </Highlight>
             </div>
             <div className="sunContainer">
-              <SunHighlight title="Sunrise & Sunset"></SunHighlight>
+              <SunHighlight title="Sunrise & Sunset">
+                <div className="sunriseContainer">
+                  <img src={sunRise}/>
+                  <h3>{getTime(this.state.data.sys.sunrise)}</h3>
+                </div>
+
+                <div className="sunriseContainer">
+                  <img src={sunSet}/>
+                  <h3>{getTime(this.state.data.sys.sunset)}</h3>
+                </div>
+              </SunHighlight>
             </div>
           </div>
         </HighlightLayout>

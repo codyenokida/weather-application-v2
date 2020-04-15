@@ -14,6 +14,7 @@ class SunHighlight extends React.Component {
         return(
             <div className={styles.sunHighlightContainer}>
                 <h2>{this.props.title}</h2>
+                {this.props.children}
             </div>
         )
     }
