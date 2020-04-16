@@ -96,9 +96,11 @@ class IndexPage extends React.Component {
         return response.json();
     })
     .then((data) => {
+      if (data.cod !== "404") {
         this.setState({
           data: data
         })
+      }
       console.log(data)
     });
 
@@ -107,9 +109,11 @@ class IndexPage extends React.Component {
         return response.json();
     })
     .then((data) => {
-      this.setState({
-        weeklyData: data
-      })
+      if (data.cod !== "404") {
+        this.setState({
+          weeklyData: data
+        })
+      }
       console.log(data)
     });
   }
@@ -193,7 +197,7 @@ class IndexPage extends React.Component {
                 stat={this.state.data.wind.speed} 
                 unit="km/hr">
                 <div className="compassContainer">
-                  <img src={compass}/>
+                  <img src={compass} alt="Compass"/>
                   {getAngle(this.state.data.wind.deg)}
                 </div>
               </Highlight>
@@ -225,12 +229,12 @@ class IndexPage extends React.Component {
             <div className="sunContainer">
               <SunHighlight title="Sunrise & Sunset">
                 <div className="sunriseContainer">
-                  <img src={sunRise}/>
+                  <img src={sunRise} alt="Sunrise Image"/>
                   <h3>{getTime(this.state.data.sys.sunrise)}</h3>
                 </div>
 
                 <div className="sunriseContainer">
-                  <img src={sunSet}/>
+                  <img src={sunSet} alt="Sunset Image"/>
                   <h3>{getTime(this.state.data.sys.sunset)}</h3>
                 </div>
               </SunHighlight>

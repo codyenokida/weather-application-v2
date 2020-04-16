@@ -41,7 +41,7 @@
 @media (min-width: 768px) { 
     .weekForecastContainer {
         margin: 0 10px 0 10px;
-        grid-template-rows: 50px 80px 50px;
+        grid-template-rows: 50px auto 50px;
     }
 
     .weekForecastContainer h2 {
